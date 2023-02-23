@@ -1,5 +1,7 @@
 // Server side
 //Node server which will handle socket io connections
+const express = require("express");
+const app = express();
 
 const io = require('socket.io')(8000, {
     cors: {
@@ -9,6 +11,10 @@ const io = require('socket.io')(8000, {
 
 
 const users={};
+
+app.get('/', function(req, res){
+  res.sendFile("./index.html", {root : __dirname});
+});
 
 io.on('connection',socket =>{
     socket.on('new-user-joined', name =>{
@@ -28,3 +34,7 @@ io.on('connection',socket =>{
     });
 
 }) 
+
+app.listen(5000, ()=>{
+  console.log("app runs")
+})
