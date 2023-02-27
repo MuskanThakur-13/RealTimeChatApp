@@ -12,9 +12,7 @@ const io = require('socket.io')(8000, {
 
 const users={};
 
-app.get('/', function(req, res){
-  res.sendFile("./index.html", {root : __dirname});
-});
+
 
 io.on('connection',socket =>{
     socket.on('new-user-joined', name =>{
@@ -35,6 +33,3 @@ io.on('connection',socket =>{
 
 }) 
 
-app.listen(5000, ()=>{
-  console.log("app runs")
-})
